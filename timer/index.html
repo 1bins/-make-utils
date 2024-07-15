@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        #timer {display: flex; align-items: center;}
+    </style>
+    <!-- <script src="./times.js" defer></script> -->
+</head>
+<body>
+    <div id="timer">
+        <p class="minute">00</p>
+        <span>:</span>
+        <p class="second">00</p>
+    </div>
+    <button type="button">타이머 시작</button>
+    <script>
+        let minElem = document.querySelector('.minute');
+        let secElem = document.querySelector('.second');
+        let buttonElem = document.querySelector('button');
+
+        const makeTimer = (initialTime) => {
+            let intervalId;
+            let time = initialTime;
+
+            const setTime = () => {
+                let min = String(Math.floor(time / 60)).padStart(2, '0');
+                let sec = String(time % 60).padStart(2, '0');
+                minElem.innerText = min;
+                secElem.innerText = sec;
+            }
+
+            const startTimer = () => {
+                intervalId = setInterval(() => {
+                    time--;
+                    
+                    setTime();
+
+                    if(time <= 0){
+                        // 타이머 종료
+                        clearInterval(intervalId);
+                        time = initialTime;
+                    }
+                
+                }, 1000);
+                
+            }
+
+            setTime();
+            return { startTimer};
+        }
+
+        const timer = makeTimer(300);
+
+        buttonElem.addEventListener('click', timer.startTimer);
+    </script>
+</body>
+</html>
