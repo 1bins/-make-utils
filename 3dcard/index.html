@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 뒤집는 효과</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .card-wrap {
+            perspective: 800px;
+
+            .card {
+                display: inline-grid;
+                color: #fff;
+                transform: rotateY(0deg);
+                transition: transform 0.3s;
+                transform-style: preserve-3d;
+                cursor: pointer;
+
+                .card-cont {
+                    grid-area: 1 / 1 / 1 / 1;
+                    width: 778px; height: 455px;
+                    padding: 12px;
+                    border-radius: 15px;
+                    background: url(./images/card_front.jpg) no-repeat center/contain;
+                    overflow: hidden;
+                    backface-visibility: hidden; /* 돌렸을때 뒷면 숨기기 */
+
+                    &.card-back {
+                        background-image: url(./images/card_back.jpg);
+                        transform: rotateY(180deg); /* 뒷면이기 때문에 회전시켜놓기 */
+                    }
+                }
+
+                &.rotated {
+                    transform: rotateY(180deg);
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-wrap">
+        <div class="card">
+            <div class="card-front card-cont">카드 앞면</div>
+            <div class="card-back card-cont">카드 뒷면</div>
+        </div>
+    </div>
+
+    <script>
+        const card = document.querySelector('.card');
+        // 마우스 올렸을 때
+        card.addEventListener('click', () => {
+            card.classList.toggle('rotated');
+        })
+    </script>
+</body>
+</html>
