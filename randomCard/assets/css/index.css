@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card-inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.card-inner .card-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 800px;
+  cursor: pointer;
+}
+.card-inner .card-area:nth-child(1) {
+  z-index: 9;
+}
+.card-inner .card-area:nth-child(2) {
+  z-index: 8;
+}
+.card-inner .card-area:nth-child(3) {
+  z-index: 7;
+}
+.card-inner .card-area:nth-child(4) {
+  z-index: 6;
+}
+.card-inner .card-area:nth-child(5) {
+  z-index: 5;
+}
+.card-inner .card-area:nth-child(6) {
+  z-index: 4;
+}
+.card-inner .card-area:nth-child(7) {
+  z-index: 3;
+}
+.card-inner .card-area:nth-child(8) {
+  z-index: 2;
+}
+.card-inner .card-area:nth-child(9) {
+  z-index: 1;
+}
+.card-inner .card-area .card {
+  display: inline-grid;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  transition: transform 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.card-inner .card-area .card.rotated {
+  transform: rotateY(180deg);
+}
+.card-inner .card-area .card .card-cont {
+  grid-area: 1/1/1/1;
+  width: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.card-inner .card-area .card .card-cont.card-back {
+  background: salmon;
+  transform: rotateY(180deg);
+  background: url(../../images/card_back0.png) no-repeat center/cover;
+  border: 1px solid #ccc;
+}
+.card-inner .card-area .card[data-card="0"] .card-back {
+  background-image: url(../../images/card_back0.png);
+}
+.card-inner .card-area .card[data-card="1"] .card-back {
+  background-image: url(../../images/card_back1.png);
+}
+.card-inner .card-area .card[data-card="2"] .card-back {
+  background-image: url(../../images/card_back2.png);
+}
+.card-inner .card-area .card[data-card="3"] .card-back {
+  background-image: url(../../images/card_back3.png);
+}
+.card-inner .card-area .card[data-card="4"] .card-back {
+  background-image: url(../../images/card_back4.png);
+}
+.card-inner .card-area .card[data-card="5"] .card-back {
+  background-image: url(../../images/card_back5.png);
+}
+.card-inner .card-area .card[data-card="6"] .card-back {
+  background-image: url(../../images/card_back6.png);
+}
+.card-inner .card-area .card[data-card="7"] .card-back {
+  background-image: url(../../images/card_back7.png);
+}
+.card-inner .card-area .card[data-card="8"] .card-back {
+  background-image: url(../../images/card_back8.png);
+}
+.card-inner .card-area .card img {
+  width: 100%;
+}
