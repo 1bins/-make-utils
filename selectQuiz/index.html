@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객관식 문항 선택</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        .question-area {
+            .btn-nextQuiz, .btn-getResult {
+                display: none;
+            }
+        }
+        .result-area > * {display: none;}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/script.js" type="module" defer></script>
+</head>
+<body>
+    <section id="question">
+        <div class="question-inner">
+            <div class="question-area">
+                <div class="question-box"></div>
+                <div class="answer-list-box"></div>
+                <div class="button-box">
+                    <button type="button" class="btn-nextQuiz">다음으로</button>
+                    <button type="button" class="btn-getResult">결과</button>
+                </div>
+            </div>
+            <div class="result-area">
+                <div class="wrong-box">오답입니다!</div>
+                <div class="ending-box">퀴즈 끝!</div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
