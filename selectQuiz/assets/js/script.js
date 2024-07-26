@@ -61,3 +61,11 @@ const QuizModule = (() => {
 })();
 
 QuizModule.init();
+
+// event3
+let count = 0;
+const items = $('#select input');
+items.change(function(){
+    $(this).is(':checked') ? count++ : count--;
+    $('#width').css('width', `${count * (100 / items.length)}%`)
+});

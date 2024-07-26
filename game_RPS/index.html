@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보 게임</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js" defer></script>
+</head>
+<body>
+    <section id="game">
+        <div class="game-inner">
+            <div class="result-box">
+                <p class="result">YOU <span class="result-data">LOSE</span></p>
+                <button type="button" class="restart-game">다시하기</button>
+            </div>
+            <div class="play-box">
+                <div class="points-box">
+                    <p class="user">0</p>
+                    <p class="computer">0</p>
+                </div>
+                <div class="user">
+                    <img src="./assets/images/paper.png" alt="가위바위보 이미지" class="-rps">
+                </div>
+                <div class="computer">
+                    <img src="./assets/images/paper.png" alt="가위바위보 이미지" class="-rps">
+                </div>
+            </div>
+            <div class="btn-box">
+                <button type="button" data-type="scissors" class="btn-scissors">가위</button>
+                <button type="button" data-type="rock" class="btn-rock">바위</button>
+                <button type="button" data-type="paper" class="btn-paper">보</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

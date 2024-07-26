@@ -8,6 +8,7 @@
 - (24.07.17) 3D Card Effect with Wheel Event: [랜덤 카드 생성/마우스휠로 카드변경/카드 3D rotate Effect](https://github.com/1bins/-make-utils/tree/main/randomCard)
 - (24.07.24) Roulette: [룰렛](https://github.com/1bins/-make-utils/tree/main/roulette)
 - (24.07.25) SelectQuiz: [객관식 퀴즈](https://github.com/1bins/-make-utils/tree/main/selectQuiz)
+- (24.07.26) Game RPS: [가위바위보 게임](https://github.com/1bins/-make-utils/tree/main/game_RPS)
 
 ### [CSS]
 
