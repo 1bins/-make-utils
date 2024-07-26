@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캔버스 피하기게임</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <section id="game">
+        <div class="game-inner">
+            <div class="score-box">
+                <p class="score" id="score">0</p>
+            </div>
+            <div class="life-box" id="life">
+                <img src="./assets/images/life.png" alt="라이프">
+                <img src="./assets/images/life.png" alt="라이프">
+                <img src="./assets/images/life.png" alt="라이프">
+            </div>
+            <div class="canvas-wrap">
+                <canvas id="myCanvas"></canvas>
+            </div>
+        </div>
+        <div class="result-inner">
+            <p class="text">GAME OVER!</p>
+            <p class="score"><span>50</span>점</p>
+            <button type="button" class="btn-restart">다시하기</button>
+        </div>
+    </section>
+    <script src="./assets/js/script.js" defer></script>
+</body>
+</html>

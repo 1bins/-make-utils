@@ -10,6 +10,10 @@
 - (24.07.25) SelectQuiz: [객관식 퀴즈](https://github.com/1bins/-make-utils/tree/main/selectQuiz)
 - (24.07.26) Game RPS: [가위바위보 게임](https://github.com/1bins/-make-utils/tree/main/game_RPS)
 
+## [CANVAS]
+
+- (24.07.26) Game Canvas1: [아이템먹기 게임](https://github.com/1bins/-make-utils/tree/main/game_canvas1)
+
 ### [CSS]
 
 - ~(24.07.16) 3D Card Effect: [클릭 이벤트 시 카드 돌아가는 효과 (링크X)](https://github.com/1bins/-make-utils)~

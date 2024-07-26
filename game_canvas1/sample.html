@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>미사일 피하기 게임</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <br>
+    <button id="restartButton">재시작</button>
+    <select id="difficulty">
+        <option value="easy">쉬움</option>
+        <option value="normal" selected>보통</option>
+        <option value="hard">어려움</option>
+    </select>
+</body>
+</html>
+<script>
+  // 캔버스 요소 가져오기
+const canvas = document.getElementById('gameCanvas');
+const context = canvas.getContext('2d');
+
+// 배경 이미지 로드
+let backgroundImage = new Image();
+backgroundImage.src = 'https://blog.kakaocdn.net/dn/bqCDo5/btquourcoxx/RUh4DZE03vx0P9tP51PBjK/img.png'; // Replace with your image URL
+
+// 플레이어 이미지 로드
+let playerImage = new Image();
+playerImage.src = 'https://cdn-icons-png.flaticon.com/512/619/619169.png'; // 여기에 비행기 이미지의 URL을 입력하세요
+
+// 게임 오버 이미지 로드
+let gameOverImage = new Image();
+gameOverImage.src = 'https://img.freepik.com/premium-vector/pixel-game-over-8bit-pixel-game-over-vector_654297-4.jpg'; // 게임 오버 이미지의 URL을 입력하세요
+
+// 게임 상태 변수
+let gameOver = false;
+let score = 0;
+let time = 0;
+let player = {
+  x: canvas.width / 2,
+  y: canvas.height - 50,
+  radius: 20
+};
+let missiles = [];
+
+// 키 이벤트 핸들러 등록
+document.addEventListener('keydown', function(event) {
+  if (event.code === 'Escape') {
+    gameOver = true;
+  }
+});
+
+// 마우스 이벤트 핸들러 등록
+canvas.addEventListener('mousemove', function(event) {
+  if (!gameOver) {
+    player.x = event.clientX - canvas.offsetLeft;
+  }
+});
+
+// 난이도 변수
+let difficulty = "normal";
+
+// 재시작 및 난이도 조절 함수 추가
+document.getElementById('restartButton').addEventListener('click', function() {
+  gameOver = false;
+  score = 0;
+  time = 0;
+  missiles = [];
+  gameLoop();
+});
+
+document.getElementById('difficulty').addEventListener('change', function(event) {
+  difficulty = event.target.value;
+});
+
+// 게임 루프 함수
+function gameLoop() {
+  // 게임 종료 시 게임 오버 이미지 표시
+  if (gameOver) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
+    return;
+  }
+
+  // 난이도에 따라 미사일 속도 조절
+  let speedMultiplier;
+  switch(difficulty) {
+    case "easy":
+      speedMultiplier = 1;
+      break;
+    case "hard":
+      speedMultiplier = 2;
+      break;
+    default:
+      speedMultiplier = 1.5;
+  }
+  for (let missile of missiles) {
+    missile.speed = 5 + (time / 500) * speedMultiplier;
+  }
+
+  // 난이도에 따른 미사일 갯수 조절
+  let missileCount;
+  switch(difficulty) {
+    case "easy":
+      missileCount = 1; // 쉬운 난이도에서는 미사일 갯수 적음
+      break;
+    case "hard":
+      missileCount = 3; // 어려운 난이도에서는 미사일 갯수 많음
+      break;
+    default:
+      missileCount = 2; // 보통 난이도
+  }
+
+  // 미사일 생성 로직
+  if (time % 50 === 0) {
+    for (let i = 0; i < missileCount; i++) {
+      missiles.push({
+        x: Math.random() * canvas.width,
+        y: 0,
+        radius: 10,
+        speed: 5 + time / 500
+      });
+    }
+  }
+
+  // 게임 상태 업데이트
+  time++;
+  if (time % 50 === 0) {
+    missiles.push({
+      x: Math.random() * canvas.width,
+      y: 0,
+      radius: 10,
+      speed: 5 + time / 500
+    });
+  }
+  for (let i = 0; i < missiles.length; i++) {
+    missiles[i].y += missiles[i].speed;
+    if (missiles[i].y > canvas.height) {
+      missiles.splice(i, 1);
+      i--;
+    } else {
+      let distance = Math.sqrt(Math.pow(player.x - missiles[i].x, 2) + Math.pow(player.y - missiles[i].y, 2));
+      // 충돌 검사
+      if (distance < player.radius + missiles[i].radius) {
+        gameOver = true;
+      }
+    }
+  }
+  score++;
+
+  // 게임 화면 그리기
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 배경 그리기
+  context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+  // 비행기 그리기
+  const targetWidth = 50;  // 원하는 너비
+  const targetHeight = 50; // 원하는 높이
+  context.drawImage(playerImage, player.x - targetWidth / 2, player.y - targetHeight / 2, targetWidth, targetHeight);
+
+  context.beginPath();
+  context.fill();
+  for (let i = 0; i < missiles.length; i++) {
+    context.beginPath();
+    context.arc(missiles[i].x, missiles[i].y, missiles[i].radius, 0, 2 * Math.PI);
+    context.fillStyle = 'red';
+    context.fill();
+  }
+  context.fillStyle = 'black';
+  context.font = '24px Arial';
+  context.fillText('Score: ' + score, 10, 30);
+
+  // 다음 프레임 실행
+  requestAnimationFrame(gameLoop);
+}
+
+// 게임 루프 시작
+requestAnimationFrame(gameLoop);
+
+</script>
