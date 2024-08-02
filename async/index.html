@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기처리 공부</title>
+</head>
+<body>
+    <script>
+        /**
+         * async/await과 then/catch
+         * async/await가 비동기 처리를 보기에 더 직관적이라고 한다.
+        */
+        // 1. async/await
+        const handleSubmit = async () => {
+            try {
+                // 비동기로 처리할 함수 앞에 await를 붙인다
+                // awiat 함수의 response값을 받아올 때까지 밑에 문들은 실행하지마 라는 뜻이다.
+                // response의 상태가 200이 아닐 때 throw new Error()를 통해 예외처리를 해주었다.
+                // 예외처리가 진행되면 try내의 아래 문들은 전부 실행이 종료되고 catch로 이동이된다.
+                const response = await axiosDefault.post('/newsletter', {
+                    campaignCode: "newsletter-test",
+                    email: userInfo.mail,
+                    name: userInfo.name
+                });
+
+                if(response.status !== 200) {
+                    throw new Error();
+                }
+
+                alert('구독 신청을 완료하였습니다');
+                handleModalClose();
+            } catch (error) {
+                alert('error가 발생했습니다.')
+            } finally {
+                $('#modal').hide();
+            }
+        }
+
+        // 2. then/catch
+        const handleSubmit2 = () => {
+            axiosDefault.post('/newsletter', {
+                campaignCode: "newsletter-test",
+                email: userInfo.mail,
+                name: userInfo.name
+            })
+            .then(response => {
+                if(response.status !== 200) {
+                    throw new Error();
+                }
+
+                alert('구독 신청을 완료하였습니다');
+                handleModalClose();
+            })
+            .catch(err => {
+                alert('error가 발생했습니다.')
+            })
+            .finally(() => {
+                $('#modal').hide();
+            })
+        }
+
+        /**
+         * 예외처리 테스트 axios-mock-adapter
+         * npm install axios-mock-adapter
+         * axiosDefault는 사전에 정의해야한다.
+        */
+        const baseURL = 'https://event-backend.stickinteractive.com/api/v1';
+
+        const axiosDefault = axios.create({
+            baseURL,
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const mock = new MockAdapter(axiosDefault);
+        // 받아오는 api주소 입력하고 reply뒤에 테스트할 상태값 넣기 현재는 500
+        mock.onPost('/api/v1/event/time-attack').reply(500, {
+            message: 'Internal Server Error'    // 메시지는 입력안해도 됨.
+        });
+
+        // 그 다음 동일하게 async/await 혹은 then/catch로 비동기 처리 함수 실행해보기
+    </script>
+</body>
+</html>

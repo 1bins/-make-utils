@@ -9,6 +9,7 @@
 - (24.07.24) Roulette: [룰렛](https://github.com/1bins/-make-utils/tree/main/roulette)
 - (24.07.25) SelectQuiz: [객관식 퀴즈](https://github.com/1bins/-make-utils/tree/main/selectQuiz)
 - (24.07.26) Game RPS: [가위바위보 게임](https://github.com/1bins/-make-utils/tree/main/game_RPS)
+- (24.08.02) async: [비동기처리에 대한 공부](https://github.com/1bins/-make-utils/async)
 
 ## [CANVAS]
 
@@ -17,3 +18,4 @@
 ### [CSS]
 
 - ~(24.07.16) 3D Card Effect: [클릭 이벤트 시 카드 돌아가는 효과 (링크X)](https://github.com/1bins/-make-utils)~
+- (24.08.01) Loader: [Loader](https://github.com/1bins/-make-utils/loader)
