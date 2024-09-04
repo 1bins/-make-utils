@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>만나이 계산기</title>
+    <style>
+        * {margin: 0; padding: 0;}
+    </style>
+    <script src="./assets/js/index.js" defer></script>
+</head>
+<body>
+    <section>
+        <h1>만 나이 계산하기</h1>
+        <input type="text" id="getAge" maxlength="6" oninput="this.value=this.value.replace(/[^-0-9]/g,'');">
+        <button type="button" class="btn-getAge">계산</button>
+        <p id="userAge">사용자의 만 나이는 만 <span></span>세 입니다</p>
+    </section>
+</body>
+</html>
