@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>폼 검증기</title>
+  <script src="./assets/js/script.js" type="module" defer></script>
+</head>
+<body>
+  <input type="text" id="user_name">
+  <input type="text" id="user_phone" maxlength="11" oninput="this.value=this.value.replace(/[^-0-9]/g,'');">
+  <input type="checkbox" id="isAgree">
+  <button type="button">전송하기</button>
+</body>
+</html>

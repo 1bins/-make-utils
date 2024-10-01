@@ -11,6 +11,7 @@
 - (24.07.26) Game RPS: [가위바위보 게임](https://github.com/1bins/-make-utils/tree/main/game_RPS)
 - (24.08.02) async: [비동기처리에 대한 공부](https://github.com/1bins/-make-utils/tree/main/async)
 - (24.09.04) American Age: [만 나이 계산기](https://github.com/1bins/-make-utils/tree/main/americanAge)
+- (24.10.02) Form Validator: [폼 검증기](https://github.com/1bins/-make-utils/tree/main/formValidator)
 
 ### [CANVAS]
 
